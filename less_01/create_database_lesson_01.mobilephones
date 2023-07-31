@@ -1,10 +1,11 @@
-"Создайте таблицу с мобильными телефонами, используя графический интерфейс. 
+/*
+Создайте таблицу с мобильными телефонами, используя графический интерфейс. 
 Заполните БД данными
 Выведите название, производителя и цену для товаров, количество которых превышает 2
-Выведите весь ассортимент товаров марки “Samsung” "
+Выведите весь ассортимент товаров марки “Samsung” 
+*/
 
-
-"1. Создание БД"
+-- 1. Создание БД
 create table lesson_01.mobilephones
 (
 id int not null
@@ -15,7 +16,7 @@ count int null,
 price int null,
 );
 
-"Наполнение БД"
+-- Наполнение БД
 insert into lesson_01.mobilephones (id, phonename, manufacturer, count, price)
 values  (100, 'IPone4', 'Apple', 5, 10000),
         (200, 'Galaxy10', 'Samsung', 8, 15500),
@@ -25,25 +26,25 @@ values  (100, 'IPone4', 'Apple', 5, 10000),
         (600, 'MiNote10', 'Xiaomi', 7, 28800);
 
 
-"2. Вывести название, производителя и цену для товаров, колочество которых больше 2"
+-- 2. Вывести название, производителя и цену для товаров, колочество которых больше 2
 SELECT phonename, manufacturer, price FROM lesson_01.mobilephones WHERE count > 2;
 
-"3. Вывести весь ассортимент товаров марки Samsung"
+-- 3. Вывести весь ассортимент товаров марки Samsung
 SELECT * FROM lesson_01.mobilephones WHERE manufacturer = 'Samsung';
 
-"4. С помощью рекулярных выражений найти:"
-"4.1 товары, в (названиях?) которых есть упоминание IPhone"
+-- 4. С помощью рекулярных выражений найти:
+-- 4.1 товары, в (названиях?) которых есть упоминание IPhone
 SELECT * FROM lesson_01.mobilephones 
 WHERE phonename LIKE '%IPhone%';
 
-"4.2 товары, в которых есть упоминание Samsung"
+-- 4.2 товары, в которых есть упоминание Samsung"
 SELECT * FROM lesson_01.mobilephones 
 WHERE phonename LIKE '%Samsung%' OR manufacturer LIKE '%Samsung%';
 
-"4.3 Товары в (наименованиях?) которых есть цифры"
+-- 4.3 Товары в (наименованиях?) которых есть цифры"
 SELECT * FROM lesson_01.mobilephones
 WHERE phonename LIKE '%[0-9]%';
 
-"4.4 Товары в (названиях?) которых есть цифра '8' "
+-- 4.4 Товары в (названиях?) которых есть цифра '8' "
 SELECT * FROM lesson_01.mobilephones
 WHERE phonename LIKE '%8%'
