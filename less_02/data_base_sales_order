@@ -1,0 +1,80 @@
+-- 1. Используя операторы языка SQL, создайте табличку “sales”
+CREATE TABLE sales
+(
+id INT  not null 
+        primary key,
+order_date DATE not null,
+backet VARCHAR(45) not null,
+);
+
+-- Наполнение table "sales"
+INSERT INTO sales (id, order_date, backet)
+VALUES  (1, '2021-01-01', '101 to 300'),
+        (1, '2021-01-02', '101 to 300'),
+        (1, '2021-01-03', 'less then equal to 100'),
+        (1, '2021-01-04', '101 to 300'),
+        (1, '2021-01-05', 'greater then 300');
+
+-- 2. Сгруппируйте значений количества в 3 сегмента — меньше 100, 100-300 и больше 300.
+ALTER TABLE sales
+ADD column rang VARCHAR (45);
+
+SELECT sales.* CASE 
+                WHEN backet = 'greater then 300' THEN 'Большой заказ'
+                WHEN backet = '101 to 300' THEN 'Средний заказ'
+                WHEN backet = 'less then equal to 100' THEN 'Маленький заказ'
+                END as backet_rang
+FROM sales;
+
+UPDATE sales
+SET rang = CASE
+                WHEN backet = 'greater then 300' THEN 'Большой заказ'
+                WHEN backet = '101 to 300' THEN 'Средний заказ'
+                WHEN backet = 'less then equal to 100' THEN 'Маленький заказ'
+                END;
+
+
+-- 3. Создайте таблицу “orders”, заполните ее значениями. 
+CREATE TABLE orders
+(
+order_id INT not null 
+            primary key
+            auto_increment,
+employee_id VARCHAR(4) not null
+emount FLOAT(2) not null,
+order_status VARCHAR(45) not null,
+);
+
+INSERT INTO orders (employee_id, emount, order_status)
+VALUES  ('e03', 15.00, 'OPEN'),
+        ('e01', 25.50, 'OPEN'),
+        ('e05', 100.70, 'CLOSED'),
+        ('e02', 22.18, 'OPEN'),
+        ('e04', 9.50, 'CANCELLED');
+        ('e04', 99.99, 'OPEN');
+
+--    Покажите “полный” статус заказа, используя оператор CASE
+ALTER TABLE sales
+ADD column orders_summary VARCHAR (45);
+
+SELECT orders.* CASE 
+                WHEN order_status = 'OPEN' THEN 'Order is in open state.'
+                WHEN order_status = 'CLOSED' THEN 'Order is closed.'
+                WHEN order_status = 'CANCELLED' THEN 'Order is cancelled.'
+                END as order_status_summary
+FROM sales;
+
+UPDATE orders
+SET orders_summary = CASE
+                WHEN order_status = 'OPEN' THEN 'Order is in open state.'
+                WHEN order_status = 'CLOSED' THEN 'Order is closed.'
+                WHEN order_status = 'CANCELLED' THEN 'Order is cancelled.'
+                END;
+
+SELECT * order_id, order_status, orders_summary FROM orders;
+
+-- 4. Чем NULL отличается от 0?
+/*
+"0" - нулевое значение
+"NULL" - значение отсутствует
+*/
