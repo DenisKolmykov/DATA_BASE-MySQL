@@ -13,3 +13,6 @@ less_02
 less_03
   task_01 повтор работы с SELECT, WHERE, DISTINCT (уникальные значения)
   task_02 сортировка: ORDER BY, GROUP BY, HAVING, LIMIT, SUM
+
+less_04
+  JOIN, UNION
