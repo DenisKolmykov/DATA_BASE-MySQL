@@ -19,3 +19,6 @@ less_04
 
 less_05
   представления (VIEW), оконные функции
+
+less_06
+  FUNCTION, PROCEDURE, TRANSACTION
