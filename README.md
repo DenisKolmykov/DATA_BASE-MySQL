@@ -16,3 +16,6 @@ less_03
 
 less_04
   JOIN, UNION
+
+less_05
+  представления (VIEW), оконные функции
